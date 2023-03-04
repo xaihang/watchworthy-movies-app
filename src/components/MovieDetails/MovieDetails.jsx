@@ -11,14 +11,12 @@ export default function MovieDetails() {
   const { id } = useParams();
 
   useEffect(() => {
-    console.log('id ===== ', id);
-    dispatch(
-        { type: 'FETCH_MOVIE', payload: id }
-    );
+    console.log("id ===== ", id);
+    dispatch({ type: "FETCH_MOVIE", payload: id });
   }, []);
 
   useEffect(() => {
-    // dispatch({ type: "FETCH_MOVIE_GENRES", payload: id });
+    dispatch({ type: "FETCH_MOVIE_GENRES", payload: id });
   }, [movie]);
 
   return (
@@ -29,11 +27,9 @@ export default function MovieDetails() {
           <img src={movie.poster} alt={movie.title} />
           <div>
             <h2>{movie.title}</h2>
-            <ul>
-              {genres?.map((genre) => (
-                <li key={genre.id}>{genre.name}</li>
-              ))}
-            </ul>
+            {genres?.map((genre) => (
+              <li key={genre.id}>{genre.name}</li>
+            ))}
             <h5>{movie.description}</h5>
           </div>
           <div>
