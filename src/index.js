@@ -3,9 +3,11 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './components/App/App.js';
 import { createStore, combineReducers, applyMiddleware } from 'redux';
+
 // Provider allows us to use redux within our react app
 import { Provider } from 'react-redux';
 import logger from 'redux-logger';
+
 // Import saga middleware
 import createSagaMiddleware from 'redux-saga';
 import { takeEvery, put } from 'redux-saga/effects';
@@ -14,6 +16,7 @@ import axios from 'axios';
 // Create the rootSaga generator function
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
+    yield takeEvery('FETCH_OMDBAPI_RESULTS', fetchResultsFromOmdbapi);
 }
 
 function* fetchAllMovies() {
@@ -27,6 +30,21 @@ function* fetchAllMovies() {
         console.log('get all error');
     }
         
+}
+
+// axios call to OMDb API to search for movie  
+function* fetchResultsFromOmdbapi(action){
+    try {
+        let searchTerms = action.payload
+        let title = searchTerms.title
+        console.log('fetched api result =', searchTerms);
+        
+        const searchResult = yield axios.get(`/api/search/${title}`)
+        yield put( { type: 'SET_SEARCH', payload: searchResult.data})
+    } catch (error) {
+        console.log("error with api get request from client side", error); 
+        yield put({ type: "FETCH_ERROR", payload: error }); 
+    }
 }
 
 // Create sagaMiddleware
@@ -52,11 +70,22 @@ const genres = (state = [], action) => {
     }
 }
 
+// store results from OMDB API search to state
+const SearchOmdbApi = (state = [], action) => {
+    switch(action.type){
+        case 'SET_SEARCH':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
 // Create one store that all components can use
 const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        SearchOmdbApi,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
