@@ -1,0 +1,10 @@
+.form-container {
+    display: flex;
+    justify-content: center;
+  }
+
+  .form-textfield {
+    margin-bottom: 20px !important;
+    margin-top: 20px !important;
+    width: 600px !important;
+  }

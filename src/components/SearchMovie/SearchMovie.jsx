@@ -3,6 +3,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { TextField, Button } from "@material-ui/core";
+import "./SearchMovie.css";
 
 
 export default function SearchMovie() {
@@ -36,7 +37,7 @@ export default function SearchMovie() {
   console.log(title, year, description, genre);
 
   return (
-    <div>
+    <div className="form-container">
       <form onSubmit={(e) => handleClick(e)}>
       <TextField
           label="Movie Title"
@@ -45,14 +46,12 @@ export default function SearchMovie() {
           fullWidth
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          style={{ marginBottom: 20 }}
+          className="form-textfield" 
         />
         <button onClick={() => history.push("/addmovie")}>Search!</button>
       </form>
     </div>
   );
-
-  
 
 }
 
@@ -71,7 +70,7 @@ export default function SearchMovie() {
   //     </form>
   //   </div>
   // );
-  
+
 
   // return (
   //   <div>
