@@ -14,7 +14,7 @@ router.get('/:t', (req,res) => {
         res.send(response.data);
     })
     .catch((error) => {
-        console.log('ERROR IN OMDB API GET', error); 
+        console.log('ERROR IN OMDb API GET', error); 
     });
 })
 
