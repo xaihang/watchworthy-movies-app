@@ -14,7 +14,6 @@ export default function SearchMovie() {
 
   const handleClick = (e) => {
     e.preventDefault();
-    // console.log('clicked it');
 
     dispatch({
       type: "FETCH_OMDBAPI_RESULTS",
