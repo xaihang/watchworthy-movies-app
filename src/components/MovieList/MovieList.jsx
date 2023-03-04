@@ -14,8 +14,8 @@ function MovieList() {
   return (
     <main>
       <h1>MovieList</h1>
-      <div className="container">
-        <section className="movies">
+      <div>
+        <section>
           {movies.map((movie) => {
             return <MovieItem key={movie.id} movie={movie} />;
           })}
