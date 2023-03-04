@@ -5,7 +5,7 @@ const axios = require('axios');
 // 	Parameter type is 't' = Movie title to search for.
 router.get('/:t', (req,res) => {
     const searchTerms  = req.params.t;
-    console.log('/search GET', searchTerms);
+    console.log('searchTerms', searchTerms);
     axios.get(`http://www.omdbapi.com/?t=${searchTerms}&apikey=${process.env.OMDb_API_KEY}`
     )
     .then ((response) => {

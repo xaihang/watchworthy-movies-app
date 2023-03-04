@@ -16,7 +16,7 @@ router.get("/", (req, res) => {
     });
 });
 
-
+//! GET selected movie by id
 router.get("/:id", (req, res) => {
   let id = req.params.id;
   console.log("GET from movie; id == ", id);
