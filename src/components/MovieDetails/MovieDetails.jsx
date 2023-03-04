@@ -37,7 +37,7 @@ export default function MovieDetails() {
             <h5>{movie.description}</h5>
           </div>
           <div>
-            <button onClick={() => history.push("/")}>Home</button>
+            <button onClick={() => history.push("/")}>Back to List</button>
           </div>
         </div>
       )}
