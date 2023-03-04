@@ -17,7 +17,6 @@ function App() {
         <Route path="/movielist">
           <MovieList />
         </Route>
-  
         {/* Details page */}
         <Route path="/moviedetails">
           <MovieDetails />
