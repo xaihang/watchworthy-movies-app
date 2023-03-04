@@ -19,6 +19,16 @@ export default function MovieDetails() {
     dispatch({ type: "FETCH_MOVIE_GENRES", payload: id });
   }, [movie]);
 
+  //dispatch DELETE favorite from table
+  const deleteMovie = (idToDelete) => {
+    dispatch({
+      type: "DELETE_MOVIE",
+      payload: idToDelete,
+    });
+    history.push("/");
+  };
+
+
   return (
     <div>
       {movie && (
@@ -34,6 +44,9 @@ export default function MovieDetails() {
           </div>
           <div>
             <button onClick={() => history.push("/")}>Back to List</button>
+            <button onClick={() => deleteMovie(movie.id)}>
+                Delete
+              </button>
           </div>
         </div>
       )}

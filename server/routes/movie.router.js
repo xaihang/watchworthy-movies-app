@@ -19,7 +19,7 @@ router.get("/", (req, res) => {
 //! GET selected movie by id
 router.get("/:id", (req, res) => {
   let id = req.params.id;
-  console.log("GET from movie; id == ", id);
+  // console.log("GET from movie; id == ", id);
   const query = `
   SELECT * FROM movies 
   WHERE ID = ${id}
@@ -72,5 +72,22 @@ router.post('/', (req, res) => {
     res.sendStatus(500)
   })
 })
+
+//! DELETE saved movie from database 
+router.delete('/:id', (req, res) => {
+  const idToDelete = req.params.id
+  const queryText = `
+    DELETE FROM movies
+    WHERE id=$1
+  `
+  const values = [idToDelete]
+  pool.query(queryText, values)
+      .then(response => {
+        res.sendStatus(200);
+      }).catch(err => {
+        console.log('Error on delete: ', err);
+        res.sendStatus(500)
+      })
+  });
 
 module.exports = router;

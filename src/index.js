@@ -20,6 +20,7 @@ function* rootSaga() {
   yield takeEvery("FETCH_OMDBAPI_RESULTS", fetchResultsFromOmdbapi);
   yield takeEvery("SAVE_MOVIE", saveMovie);
   yield takeEvery("FETCH_MOVIE_GENRES", fetchMovieGenres);
+  yield takeEvery("DELETE_MOVIE", deleteMovie);
 }
 
 // get all movies from the DB
@@ -44,7 +45,7 @@ function* fetchMovie(action) {
   }
 }
 
-// get all movie genres
+//! GET all movie genres
 function* fetchMovieGenres(action) {
   try {
     // console.log("fetchMovieGenres action.payload:", action.payload);
@@ -57,7 +58,7 @@ function* fetchMovieGenres(action) {
   }
 }
 
-// GET axios call to OMDb API to search for movie
+//! GET axios call to OMDb API to search for movie
 function* fetchResultsFromOmdbapi(action) {
   try {
     let searchTerms = action.payload;
@@ -72,7 +73,7 @@ function* fetchResultsFromOmdbapi(action) {
   }
 }
 
-// POST axios call to save movie to database
+//! POST axios call to save movie to database
 function* saveMovie(action) {
   try {
     yield axios.post("api/movie", action.payload);
@@ -82,6 +83,17 @@ function* saveMovie(action) {
     yield put({ type: "FETCH_ERROR", payload: error });
   }
 }
+
+//! DELETE saved movie from database 
+function* deleteMovie(action) {
+    try {
+      yield axios.delete(`/api/movie/${action.payload}`);
+      yield put({ type: "FETCH_MOVIES" });
+    } catch (error) {
+      console.log("error with delete request", error);
+      yield put({ type: "FETCH_ERROR", payload: error });
+    }
+  }
 
 // Create sagaMiddleware
 const sagaMiddleware = createSagaMiddleware();
