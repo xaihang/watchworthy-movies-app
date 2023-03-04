@@ -11,7 +11,6 @@ export default function SearchMovie() {
   const [genre, setGenre] = useState("");
   const [year, setYear] = useState("");
   const [description, setDescription] = useState("");
-  // const searchResults = useSelector(state => state.searchResults);
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -41,16 +40,10 @@ export default function SearchMovie() {
           type="text"
           value={title}
           onChange={(e) => setTitle(e.target.value)}
-          placeholder="enter movie title here..."
+          placeholder="movie title..."
         />
-   
         <button onClick={() => history.push("/addmovie")}>Search!</button>
       </form>
-
-      {/* {searchResults && searchResults.Response === "False" && (
-        <p>The title you are searching for is not found.</p>
-      )} */}
-
     </div>
   );
 }
