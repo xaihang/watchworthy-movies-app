@@ -2,15 +2,14 @@
 
 ## Description
 
-_Duration: 2 days Sprint_
-
 The movie management application is a web-based system that allows users to manage a list of movies. The application has two main views: the Home/List Page and the Details Page.
 
 The Home/List Page displays all of the movies in the database. When a movie poster is clicked, the user is brought to the Details Page for that movie. The Details Page shows all details for the selected movie, including title, description, and image, as well as all genres associated with the movie. The Details Page also has a Back to List button that allows the user to return to the Home/List Page.
 
 The application also has several stretch goals, including an Add Movie Form that allows users to add new movies to the database, a Refresh on Details Page feature that allows the application to maintain the details page on refresh, and an Edit Page that allows users to edit the title and description of a movie.
 
-Users can expect a well-styled and easy-to-use application that follows best practices, including frequent code commits and comments.
+**NOTE:** 
+ [The Open Movie Database API](https://www.omdbapi.com/): has comprehensive documentation that is easy to follow. The API supports a variety of endpoints, including movie search and information retrieval. The API also supports several data formats, including JSON and XML.
 
 ---
 ## **TABLE OF CONTENT:**
@@ -62,6 +61,7 @@ Users can expect a well-styled and easy-to-use application that follows best pra
 * [Node js](https://nodejs.org/en/about/)
 * [Express js](https://expressjs.com/)
 * [Axio](https://axio.com/)
+* [The Open Movie Database API](https://www.omdbapi.com/)
 * [Postico 2](https://eggerapps.at/postico2/)
 * [PostgreSQL](https://www.postgresql.org/)
 * [Postman](https://www.postman.com/)
