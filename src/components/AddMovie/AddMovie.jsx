@@ -26,8 +26,8 @@ export default function AddMovie() {
       <h3>{SearchOmdbApi.Title}</h3>
       <h4>{SearchOmdbApi.Plot}</h4>
       <div>
-        <button onClick={() => saveMovie()}>Save Movie</button>
-        <button onClick={() => history.push("/")}>Back to List</button>
+        <button onClick={() => saveMovie()}>Save</button>
+        <button onClick={() => history.push("/")}>Cancel</button>
       </div>
     </div>
   );
