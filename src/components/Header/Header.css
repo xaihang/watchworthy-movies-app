@@ -1,0 +1,9 @@
+@import url('https://fonts.googleapis.com/css2?family=Shantell+Sans:ital,wght@1,500&family=Tilt+Prism&display=swap');
+
+.title {
+    font-family: 'Shantell Sans', cursive;
+}
+
+.logo {
+    cursor: pointer;
+  }

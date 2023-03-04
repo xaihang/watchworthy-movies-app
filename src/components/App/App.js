@@ -4,7 +4,7 @@ import MovieList from '../MovieList/MovieList'
 import SearchMovie from '../SearchMovie/SearchMovie';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import AddMovie from '../AddMovie/AddMovie';
-import Header from '../MaterialUI/Header';
+import Header from '../Header/Header';
 
 function App() {
   return (
