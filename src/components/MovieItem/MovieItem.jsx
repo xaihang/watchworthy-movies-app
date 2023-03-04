@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 
@@ -7,9 +7,9 @@ export default function MovieItem({ movie }) {
     const history = useHistory();
 
     const setMovie = (movie) => {
-        dispatch(
-            { type: 'SET_MOVIE', payload: movie.id }
-        );
+        // dispatch(
+        //     { type: 'SET_MOVIE', payload: movie.id }
+        // );
         console.log('setMovie', movie.id);
         history.push(`details/${movie.id}`)
     }
