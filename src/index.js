@@ -38,7 +38,7 @@ function* fetchMovie(action) {
   try {
     let id = action.payload;
     const singleMovie = yield axios.get(`/api/movie/${id}`);
-    yield put({ type: "SET_DETAILS", payload: singleMovie.data });
+    yield put({ type: "SET_MOVIE", payload: singleMovie.data });
   } catch (error) {
     console.log("GET error single movie", error);
   }
@@ -47,7 +47,10 @@ function* fetchMovie(action) {
 // get all movie genres
 function* fetchMovieGenres(action) {
   try {
-    const response = yield axios.get(`/api/genre/${action.payload}`);
+    // console.log("fetchMovieGenres action.payload:", action.payload);
+    // const response = yield axios.get(`/api/genre/${action.payload}`);
+    const movieId = action.payload;
+    const response = yield axios.get(`/api/genre/${movieId}`);
     yield put({ type: "SET_GENRES", payload: response.data });
   } catch (error) {
     console.log("Error", error);
@@ -117,7 +120,12 @@ const SearchOmdbApi = (state = [], action) => {
 const movieItem = (state = {}, action) => {
   switch (action.type) {
     case "SET_MOVIE":
-      return action.payload;
+    //   console.log("SET_MOVIE action.payload: ", action.payload);
+      if (action.payload.length > 0) {
+        // console.log("SET_MOVIE action.payload[0]: ", action.payload[0]);
+        return action.payload[0];
+      }
+      return undefined;
     default:
       return state;
   }
@@ -128,6 +136,7 @@ const storeInstance = createStore(
   combineReducers({
     movies,
     genres,
+    movieItem,
     SearchOmdbApi,
   }),
   // Add sagaMiddleware to our store
