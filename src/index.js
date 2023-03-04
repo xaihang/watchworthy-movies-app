@@ -17,6 +17,7 @@ import axios from 'axios';
 function* rootSaga() {
     yield takeEvery('FETCH_MOVIES', fetchAllMovies);
     yield takeEvery('FETCH_OMDBAPI_RESULTS', fetchResultsFromOmdbapi);
+    yield takeEvery('SAVE_MOVIE', saveMovie);
 }
 
 function* fetchAllMovies() {
@@ -32,7 +33,7 @@ function* fetchAllMovies() {
         
 }
 
-// axios call to OMDb API to search for movie  
+// GET axios call to OMDb API to search for movie  
 function* fetchResultsFromOmdbapi(action){
     try {
         let searchTerms = action.payload
@@ -43,6 +44,17 @@ function* fetchResultsFromOmdbapi(action){
         yield put( { type: 'SET_SEARCH', payload: searchResult.data})
     } catch (error) {
         console.log("error with api get request from client side", error); 
+        yield put({ type: "FETCH_ERROR", payload: error }); 
+    }
+}
+
+// POST axios call to save movie to database
+function* saveMovie(action) {
+    try{ 
+        yield axios.post('api/movie', action.payload) 
+        yield put( {type:'FETCH_MOVIES'} )
+    }catch (error) {
+        console.log('POST save movie client error', error);
         yield put({ type: "FETCH_ERROR", payload: error }); 
     }
 }
