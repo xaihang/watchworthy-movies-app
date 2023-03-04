@@ -43,7 +43,7 @@ function* fetchResultsFromOmdbapi(action){
         yield put( { type: 'SET_SEARCH', payload: searchResult.data})
     } catch (error) {
         console.log("error with api get request from client side", error); 
-        // yield put({ type: "FETCH_ERROR", payload: error }); 
+        yield put({ type: "FETCH_ERROR", payload: error }); 
     }
 }
 
@@ -70,8 +70,8 @@ const genres = (state = [], action) => {
     }
 }
 
-// Adds row from OMDB search to state store
-const omdbSearch = (state = [], action) => {
+// store results from OMDB API search to state
+const SearchOmdbApi = (state = [], action) => {
     switch(action.type){
         case 'SET_SEARCH':
             return action.payload;
@@ -85,6 +85,7 @@ const storeInstance = createStore(
     combineReducers({
         movies,
         genres,
+        SearchOmdbApi,
     }),
     // Add sagaMiddleware to our store
     applyMiddleware(sagaMiddleware, logger),
