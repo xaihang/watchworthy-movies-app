@@ -42,8 +42,8 @@ function* fetchResultsFromOmdbapi(action){
         const searchResult = yield axios.get(`/api/search/${title}`)
         yield put( { type: 'SET_SEARCH', payload: searchResult.data})
     } catch (error) {
-        console.log("error with api get request", error); 
-        yield put({ type: "FETCH_ERROR", payload: error }); 
+        console.log("error with api get request from client side", error); 
+        // yield put({ type: "FETCH_ERROR", payload: error }); 
     }
 }
 
@@ -64,6 +64,16 @@ const movies = (state = [], action) => {
 const genres = (state = [], action) => {
     switch (action.type) {
         case 'SET_GENRES':
+            return action.payload;
+        default:
+            return state;
+    }
+}
+
+// Adds row from OMDB search to state store
+const omdbSearch = (state = [], action) => {
+    switch(action.type){
+        case 'SET_SEARCH':
             return action.payload;
         default:
             return state;
