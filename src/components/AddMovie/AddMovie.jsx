@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button } from "@material-ui/core"; 
+import { Button, Paper } from "@material-ui/core"; 
 import "./AddMovie.css";
 
 export default function AddMovie() {
@@ -23,7 +23,7 @@ export default function AddMovie() {
 
 
   return (
-    <div className="add-movie-container"> 
+    <Paper className="add-movie-container">
       <div className="poster-container"> 
         <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
       </div>
@@ -33,6 +33,6 @@ export default function AddMovie() {
         <Button variant="contained" color="primary" onClick={() => saveMovie()}>Save</Button> 
         <Button variant="outlined" color="primary" onClick={() => history.push("/")}>Back to List</Button> 
       </div>
-    </div>
+    </Paper>
   );
 }
