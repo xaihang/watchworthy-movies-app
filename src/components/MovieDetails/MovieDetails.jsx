@@ -1,7 +1,16 @@
-import React, { useState } from "react";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+} from "@material-ui/core";
+import "./MovieDetails.css";
 
 export default function MovieDetails() {
   const dispatch = useDispatch();
@@ -9,6 +18,21 @@ export default function MovieDetails() {
   const movie = useSelector((store) => store.movieItem);
   const genres = useSelector((store) => store.genres);
   const { id } = useParams();
+
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const handleDeleteClick = () => {
+    setShowDeleteDialog(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    deleteMovie(movie.id);
+    setShowDeleteDialog(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteDialog(false);
+  };
 
   useEffect(() => {
     console.log("id ===== ", id);
@@ -19,7 +43,7 @@ export default function MovieDetails() {
     dispatch({ type: "FETCH_MOVIE_GENRES", payload: id });
   }, [movie]);
 
-  //dispatch DELETE favorite from table
+  //dispatch DELETE movie from table
   const deleteMovie = (idToDelete) => {
     dispatch({
       type: "DELETE_MOVIE",
@@ -28,28 +52,62 @@ export default function MovieDetails() {
     history.push("/");
   };
 
-
   return (
-    <div>
+    <Paper className="movie-details-container">
       {movie && (
-        <div>
-          <h4>MOVIE DETAILS</h4>
-          <img src={movie.poster} alt={movie.title} />
-          <div>
-            <h2>{movie.title}</h2>
+        <div className="poster-container">
+          <h2>More about this movie...</h2>
+          <img src={movie.poster} alt={movie.title} className="movie-poster" />
+          <div className="movie-details">
+            <h3>{movie.title}</h3>
             {genres?.map((genre) => (
               <li key={genre.id}>{genre.name}</li>
             ))}
             <h5>{movie.description}</h5>
           </div>
           <div>
-            <button onClick={() => history.push("/")}>Back to List</button>
-            <button onClick={() => deleteMovie(movie.id)}>
+            <div className="button-container">
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={handleDeleteClick}
+              >
                 Delete
-              </button>
+              </Button>
+
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => history.push("/")}
+              >
+                Back to List
+              </Button>
+            </div>
           </div>
         </div>
       )}
-    </div>
+
+      <Dialog
+        open={showDeleteDialog}
+        onClose={handleDeleteCancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Delete Movie?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this movie?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteCancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteConfirm} color="primary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
+    </Paper>
   );
 }
