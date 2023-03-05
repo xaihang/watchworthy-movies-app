@@ -1,7 +1,8 @@
 .form-container {
-    display: flex;
-    justify-content: center;
-  }
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
   .form-textfield {
     margin-bottom: 20px !important;
@@ -16,3 +17,9 @@
     margin-left: 10px !important;
   }
 
+  .error-message {
+    color: red;
+    text-align: center !important;
+    margin-top: 15px;
+    margin-right: 10px;
+  }
