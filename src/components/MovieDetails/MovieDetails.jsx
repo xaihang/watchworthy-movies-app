@@ -1,7 +1,15 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
-import { Button, Paper } from "@material-ui/core";
+import {
+  Button,
+  Dialog,
+  DialogActions,
+  DialogContent,
+  DialogContentText,
+  DialogTitle,
+  Paper,
+} from "@material-ui/core";
 import "./MovieDetails.css";
 
 export default function MovieDetails() {
@@ -10,6 +18,21 @@ export default function MovieDetails() {
   const movie = useSelector((store) => store.movieItem);
   const genres = useSelector((store) => store.genres);
   const { id } = useParams();
+
+  const [showDeleteDialog, setShowDeleteDialog] = useState(false);
+
+  const handleDeleteClick = () => {
+    setShowDeleteDialog(true);
+  };
+
+  const handleDeleteConfirm = () => {
+    deleteMovie(movie.id);
+    setShowDeleteDialog(false);
+  };
+
+  const handleDeleteCancel = () => {
+    setShowDeleteDialog(false);
+  };
 
   useEffect(() => {
     console.log("id ===== ", id);
@@ -47,7 +70,7 @@ export default function MovieDetails() {
               <Button
                 variant="outlined"
                 color="error"
-                onClick={() => deleteMovie(movie.id)}
+                onClick={handleDeleteClick}
               >
                 Delete
               </Button>
@@ -63,6 +86,28 @@ export default function MovieDetails() {
           </div>
         </div>
       )}
+
+      <Dialog
+        open={showDeleteDialog}
+        onClose={handleDeleteCancel}
+        aria-labelledby="alert-dialog-title"
+        aria-describedby="alert-dialog-description"
+      >
+        <DialogTitle id="alert-dialog-title">{"Delete Movie?"}</DialogTitle>
+        <DialogContent>
+          <DialogContentText id="alert-dialog-description">
+            Are you sure you want to delete this movie?
+          </DialogContentText>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleDeleteCancel} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleDeleteConfirm} color="primary" autoFocus>
+            Delete
+          </Button>
+        </DialogActions>
+      </Dialog>
     </Paper>
   );
 }
