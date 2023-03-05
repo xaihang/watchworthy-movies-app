@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
-const { getGenres, insertGenres, insertMovieGenres } = require("./crud/sql.crud");
+const { getGenres, createGenres, createMovieGenres } = require("./crud/sql.crud");
 
 //! GET: router to provide the complete list of movie objects
 router.get("/", (req, res) => {
@@ -52,24 +52,25 @@ router.post('/', (req, res) => {
     
     const createdMovieId = result.rows[0].id
 
-    let movieGenres = req.body.genres.split(',');
+    let movieGenres = req.body.genres.split(',').map((value) => value.trim());
 
-    let searchGenreResults = await getGenres(movieGenres);
+    let searchGenresResult = await getGenres(movieGenres);
 
-    let resultNameOnlyList = searchGenreResults.rows.map((row) => {return row.name});
-    let genreListNeedToAddToDatabase = genreIdList.filter( genre => !resultNameOnlyList.includes(genre));
+    let resultNameOnlyList = searchGenresResult.rows.map((row) => {return row.name});
+    let genreListNeedToAddToDatabase = movieGenres.filter( genre => !resultNameOnlyList.includes(genre));
 
     if (genreListNeedToAddToDatabase.length > 0) {
-      await insertGenres(genreListNeedToAddToDatabase);
+      await createGenres(genreListNeedToAddToDatabase);
       // call search genres result again for update
-      searchGenreResults = await getGenres(movieGenres);
+      searchGenresResult = await getGenres(movieGenres);
     }
 
-    console.log('reach here 1 =========');
+    let rows = searchGenresResult.rows;
+    // console.log('reach here 1 =========', rows);
     // Now handle the genre reference
-    for ( let i = 0; i < searchGenreResults.length ; i++ ) {
-      let currentGenreId = searchGenreResults[i].id;
-      await insertMovieGenres({movieId: createdMovieId, genreId: currentGenreId});
+    for ( let i = 0; i < rows.length ; i++ ) {
+      let currentGenreId = rows[i].id;
+      await createMovieGenres({movieId: createdMovieId, genreId: currentGenreId});
     }
 
     res.sendStatus(201);

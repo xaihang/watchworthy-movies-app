@@ -1,60 +1,77 @@
 
-export const insertGenres = async (genreList) => {
+//! this file is created to manipulating sql to inject query into database
 
+// import pool here so we can call to database
+const pool = require("../../modules/pool");
+
+// create genres
+const createGenres = async (genreList) => {
   if (genreList.length === 0) {
     return false;
   }
   // Now handle the genre Insert
   let insertsMovieGenreQuery = `
-    INSERT INTO "genres" ("name")
-    VALUES`;
-
+        INSERT INTO "genres" ("name")
+        VALUES`;
+  // loop through the genres list to append the values query
   genreList.map((value, index) => {
     if (index > 0) {
       insertsMovieGenreQuery += ",";
     }
     insertsMovieGenreQuery += ` ($${index + 1})`;
   });
-
+  // closing the query 
   insertsMovieGenreQuery += ";";
 
-  // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
+  // calling the database
   let result = await pool.query(insertsMovieGenreQuery, genreList);
   return true;
 };
 
-export const insertMovieGenres = async ({movieId, genreId}) => {
+// create the movie genres 
+const createMovieGenres = async ({ movieId, genreId }) => {
+  // console.log("reach here 2 =========");
 
-    console.log('reach here 2 =========');
-    const insertMovieGenreQuery = `
-    INSERT INTO "movies_genres" ("movie_id", "genre_id")
-    VALUES  ($1, $2);
-    `
-    // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-    await pool.query(insertMovieGenreQuery, [movieId, genreId]);
-}
+  // querytext for sql 
+  const insertMovieGenreQuery = `
+        INSERT INTO "movies_genres" ("movie_id", "genre_id")
+        VALUES  ($1, $2);
+        `;
+  // calling the database with querytext with movie id and genre id 
+  await pool.query(insertMovieGenreQuery, [movieId, genreId]);
+};
 
-export const getGenres = async (genreList) => {
-  let genreIdList = [];
+// get the genres from database 
+const getGenres = async (genreList) => {
+   // initializing the prefix query 
   let searchGenresQuery = "";
+  // looping through the query and concatinating the variables to the prefix query 
   for (let i = 0; i < genreList.length; i++) {
     if (i !== 0) {
       searchGenresQuery += ",";
     }
-    let currentGenre = genreList[i].trim();
-    genreIdList.push(currentGenre);
+    let currentGenre = genreList[i];
     searchGenresQuery += `'${currentGenre}'`;
   }
-  // console.log('genreIdList == ', genreIdList);
   // console.log('searchGenresQuery == ', searchGenresQuery);
+
+  // concatinating the final query with the prefix query and closing query
   const verifyGenreQuery =
     `SELECT * FROM "genres" WHERE NAME in (` + searchGenresQuery + `);`;
 
   // console.log('verifyGenreQuery == ', verifyGenreQuery);
 
-  // Now handle the genre reference
-
-  // SECOND QUERY VERIFY IF GENRES IS IN DATABASE
+  // final query result (final + prefix) to the database  
   let result = await pool.query(verifyGenreQuery);
   return result;
 };
+
+// packaging the functions of sql crud and export 
+const sqlCrud = {
+  createGenres,
+  createMovieGenres,
+  getGenres
+};
+
+// export module 
+module.exports = sqlCrud;
