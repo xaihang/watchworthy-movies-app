@@ -1,6 +1,8 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { Button } from "@material-ui/core"; 
+import "./AddMovie.css";
 
 export default function AddMovie() {
   const dispatch = useDispatch();
@@ -19,15 +21,17 @@ export default function AddMovie() {
     history.push("/");
   };
 
+
   return (
-    <div>
-      <h2>Add Movie page</h2>
-      <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
+    <div className="add-movie-container"> 
+      <div className="poster-container"> 
+        <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
+      </div>
       <h3>{SearchOmdbApi.Title}</h3>
       <h4>{SearchOmdbApi.Plot}</h4>
-      <div>
-        <button onClick={() => saveMovie()}>Save</button>
-        <button onClick={() => history.push("/")}>Back to List</button>
+      <div className="button-container">
+        <Button variant="contained" color="primary" onClick={() => saveMovie()}>Save</Button> 
+        <Button variant="outlined" color="primary" onClick={() => history.push("/")}>Back to List</Button> 
       </div>
     </div>
   );
