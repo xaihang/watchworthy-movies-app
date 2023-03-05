@@ -1,7 +1,7 @@
-import React, { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
+import { Button, Paper } from "@material-ui/core";
 
 export default function MovieDetails() {
   const dispatch = useDispatch();
@@ -19,7 +19,7 @@ export default function MovieDetails() {
     dispatch({ type: "FETCH_MOVIE_GENRES", payload: id });
   }, [movie]);
 
-  //dispatch DELETE favorite from table
+  //dispatch DELETE movie from table
   const deleteMovie = (idToDelete) => {
     dispatch({
       type: "DELETE_MOVIE",
@@ -28,12 +28,11 @@ export default function MovieDetails() {
     history.push("/");
   };
 
-
   return (
-    <div>
+    <Paper className="movie-details-container">
       {movie && (
         <div>
-          <h4>MOVIE DETAILS</h4>
+          <h3>More about this movie...</h3>
           <img src={movie.poster} alt={movie.title} />
           <div>
             <h2>{movie.title}</h2>
@@ -43,13 +42,24 @@ export default function MovieDetails() {
             <h5>{movie.description}</h5>
           </div>
           <div>
-            <button onClick={() => history.push("/")}>Back to List</button>
-            <button onClick={() => deleteMovie(movie.id)}>
-                Delete
-              </button>
+
+            {/* <button onClick={() => deleteMovie(movie.id)}>Delete</button> */}
+           
+            <Button variant="contained" color="error" onClick={() => deleteMovie(movie.id)}>
+          Delete
+        </Button>
+
+            <Button
+          variant="outlined"
+          color="primary"
+          onClick={() => history.push("/")}
+        >
+          Back to List
+        </Button>
+          
           </div>
         </div>
       )}
-    </div>
+    </Paper>
   );
 }
