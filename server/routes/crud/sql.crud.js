@@ -24,7 +24,7 @@ const createGenres = async (genreList) => {
   insertsMovieGenreQuery += ";";
 
   // calling the database
-  let result = await pool.query(insertsMovieGenreQuery, genreList);
+  await pool.query(insertsMovieGenreQuery, genreList);
   return true;
 };
 

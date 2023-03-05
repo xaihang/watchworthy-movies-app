@@ -50,24 +50,33 @@ router.post('/', (req, res) => {
   .then(async result => {
     console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
     
+    // grab movie id 
     const createdMovieId = result.rows[0].id
 
+    // create a list from movie genres and cleaning up the values (data)
     let movieGenres = req.body.genres.split(',').map((value) => value.trim());
 
+    // searching the genres table (database) to see if genre(s) exist 
     let searchGenresResult = await getGenres(movieGenres);
 
+    // creating a list consit of the genre name only from search result
     let resultNameOnlyList = searchGenresResult.rows.map((row) => {return row.name});
+
+    // filter out the genres that needs to be added to database with the search result 
     let genreListNeedToAddToDatabase = movieGenres.filter( genre => !resultNameOnlyList.includes(genre));
 
+    // verifying if the genre, if any, needs to be added to database
     if (genreListNeedToAddToDatabase.length > 0) {
+      // if not in database, then add 
       await createGenres(genreListNeedToAddToDatabase);
       // call search genres result again for update
       searchGenresResult = await getGenres(movieGenres);
     }
 
+    // grab the search result rows
     let rows = searchGenresResult.rows;
     // console.log('reach here 1 =========', rows);
-    // Now handle the genre reference
+    // looping through the rows and creating the movie genre(s)
     for ( let i = 0; i < rows.length ; i++ ) {
       let currentGenreId = rows[i].id;
       await createMovieGenres({movieId: createdMovieId, genreId: currentGenreId});
