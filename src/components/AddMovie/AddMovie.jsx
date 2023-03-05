@@ -13,10 +13,11 @@ export default function AddMovie() {
     title: SearchOmdbApi.Title,
     poster: SearchOmdbApi.Poster,
     description: SearchOmdbApi.Plot,
-    genre_id: SearchOmdbApi.Genre,
+    genres: SearchOmdbApi.Genre,
   };
 
   const saveMovie = () => {
+    console.log('savedMovie ==== ', savedMovie);
     dispatch({ type: "SAVE_MOVIE", payload: savedMovie });
     history.push("/");
   };
