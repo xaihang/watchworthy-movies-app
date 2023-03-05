@@ -8,6 +8,8 @@ import "./SearchMovie.css";
 export default function SearchMovie() {
   const history = useHistory();
   const dispatch = useDispatch();
+  const searchError = useSelector(state => state.search.error); // get the search error message from the redux store
+
 
   const [title, setTitle] = useState("");
   const [genre, setGenre] = useState("");
@@ -22,15 +24,19 @@ export default function SearchMovie() {
   };
 
   const handleClick = () => {
-    dispatch({
-      type: "FETCH_OMDBAPI_RESULTS",
-      payload: {
-        title,
-        year,
-        description,
-        genre,
-      },
-    });
+    if (searchError) {
+      alert(searchError);
+    } else {
+      dispatch({
+        type: "FETCH_OMDBAPI_RESULTS",
+        payload: {
+          title,
+          year,
+          description,
+          genre,
+        },
+      });
+    }
 
     setTitle("");
     setYear("");
@@ -44,6 +50,11 @@ export default function SearchMovie() {
 
   return (
     <div className="form-container">
+      {searchError && ( // display the error message if it exists
+        <div className="error-message">
+          {searchError}
+        </div>
+      )}
       <form>
         <TextField
           label="Movie Title"

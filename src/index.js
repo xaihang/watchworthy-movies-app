@@ -69,7 +69,7 @@ function* fetchResultsFromOmdbapi(action) {
     yield put({ type: "SET_SEARCH", payload: searchResult.data });
   } catch (error) {
     console.log("error with api get request from client side", error);
-    yield put({ type: "FETCH_ERROR", payload: error });
+    yield put({ type: "FETCH_ERROR", payload: error.message }); // dispatch the FETCH_ERROR action with the error message
   }
 }
 
@@ -143,6 +143,16 @@ const movieItem = (state = {}, action) => {
   }
 };
 
+// store error messages from API requests
+const search = (state = { error: null }, action) => {
+  switch (action.type) {
+    case "FETCH_ERROR":
+      return { ...state, error: action.payload };
+    default:
+      return state;
+  }
+};
+
 // Create one store that all components can use
 const storeInstance = createStore(
   combineReducers({
@@ -150,6 +160,7 @@ const storeInstance = createStore(
     genres,
     movieItem,
     SearchOmdbApi,
+    search,
   }),
   // Add sagaMiddleware to our store
   applyMiddleware(sagaMiddleware, logger)
