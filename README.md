@@ -1,12 +1,7 @@
 # WATCHWORTHY (a movie managament app)
 
 ## Description
-
-The movie management application is a web-based system that allows users to manage a list of movies. The application has two main views: the Home/List Page and the Details Page.
-
-The Home/List Page displays all of the movies in the database. When a movie poster is clicked, the user is brought to the Details Page for that movie. The Details Page shows all details for the selected movie, including title, description, and image, as well as all genres associated with the movie. The Details Page also has a Back to List button that allows the user to return to the Home/List Page.
-
-The application also has several stretch goals, including an Add Movie Form that allows users to add new movies to the database, a Refresh on Details Page feature that allows the application to maintain the details page on refresh, and an Edit Page that allows users to edit the title and description of a movie.
+Watchworthy is a movie management application that allows users to effortlessly search for and add movies to their collection. Utilizing The Open Movie Database API, users can browse movies by title and add them to their Watchworthy collection with just a click. Once added, users can access an organized list of their chosen movies and click on each poster to view detailed information about the movie. Furthermore, removing movies from their collection is just as simple. Watchworthy streamlines the process of managing favorite movies or creating a collection for future viewing, making it an intuitive and user-friendly application.
 
 **NOTE:** 
  [The Open Movie Database API](https://www.omdbapi.com/): has comprehensive documentation that is easy to follow. The API supports a variety of endpoints, including movie search and information retrieval. The API also supports several data formats, including JSON and XML.
