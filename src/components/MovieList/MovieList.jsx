@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Paper } from "@material-ui/core";
 import "./MovieList.css";
 import MovieItem from "../MovieItem/MovieItem";
+
 
 function MovieList() {
   const dispatch = useDispatch();
@@ -14,11 +16,11 @@ function MovieList() {
   return (
     <main>
       <div>
-        <section className="movies">
+      <Paper elevation={3} className="movies">
           {movies.map((movie) => {
             return <MovieItem key={movie.id} movie={movie} />;
           })}
-        </section>
+        </Paper>
       </div>
     </main>
   );
