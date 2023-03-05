@@ -60,15 +60,9 @@ export default function MovieDetails() {
           <img src={movie.poster} alt={movie.title} className="movie-poster" />
           <div className="movie-details">
             <h3>{movie.title}</h3>
-            {/* {genres?.map((genre) => (
-              <li key={genre.id}>{genre.name}</li>
-            ))}
-       */}
-
             {genres.map((genre) => (
               <span key={genre.id}>{genre.name}</span>
             ))}
-
             <p>{movie.description}</p>
           </div>
           <div>
@@ -80,7 +74,6 @@ export default function MovieDetails() {
               >
                 Delete
               </Button>
-
               <Button
                 variant="outlined"
                 color="primary"
@@ -92,7 +85,6 @@ export default function MovieDetails() {
           </div>
         </div>
       )}
-
       <Dialog
         open={showDeleteDialog}
         onClose={handleDeleteCancel}
