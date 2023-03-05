@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const pool = require("../modules/pool");
+const { getGenres, insertGenres, insertMovieGenres } = require("./crud/sql.crud");
 
 //! GET: router to provide the complete list of movie objects
 router.get("/", (req, res) => {
@@ -46,25 +47,32 @@ router.post('/', (req, res) => {
 
   // FIRST QUERY MAKES MOVIE
   pool.query(insertMovieQuery, [req.body.title, req.body.poster, req.body.description])
-  .then(result => {
+  .then(async result => {
     console.log('New Movie Id:', result.rows[0].id); //ID IS HERE!
     
     const createdMovieId = result.rows[0].id
 
+    let movieGenres = req.body.genres.split(',');
+
+    let searchGenreResults = await getGenres(movieGenres);
+
+    let resultNameOnlyList = searchGenreResults.rows.map((row) => {return row.name});
+    let genreListNeedToAddToDatabase = genreIdList.filter( genre => !resultNameOnlyList.includes(genre));
+
+    if (genreListNeedToAddToDatabase.length > 0) {
+      await insertGenres(genreListNeedToAddToDatabase);
+      // call search genres result again for update
+      searchGenreResults = await getGenres(movieGenres);
+    }
+
+    console.log('reach here 1 =========');
     // Now handle the genre reference
-    const insertMovieGenreQuery = `
-      INSERT INTO "movies_genres" ("movie_id", "genre_id")
-      VALUES  ($1, $2);
-      `
-      // SECOND QUERY ADDS GENRE FOR THAT NEW MOVIE
-      pool.query(insertMovieGenreQuery, [createdMovieId, req.body.genre_id]).then(result => {
-        //Now that both are done, send back success!
-        res.sendStatus(201);
-      }).catch(err => {
-        // catch for second query
-        console.log(err);
-        res.sendStatus(500)
-      })
+    for ( let i = 0; i < searchGenreResults.length ; i++ ) {
+      let currentGenreId = searchGenreResults[i].id;
+      await insertMovieGenres({movieId: createdMovieId, genreId: currentGenreId});
+    }
+
+    res.sendStatus(201);
 
 // Catch for first query
   }).catch(err => {

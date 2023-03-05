@@ -13,10 +13,11 @@ export default function AddMovie() {
     title: SearchOmdbApi.Title,
     poster: SearchOmdbApi.Poster,
     description: SearchOmdbApi.Plot,
-    genre_id: 1,
+    genres: SearchOmdbApi.Genre,
   };
 
   const saveMovie = () => {
+    console.log('savedMovie ==== ', savedMovie);
     dispatch({ type: "SAVE_MOVIE", payload: savedMovie });
     history.push("/");
   };
@@ -28,7 +29,8 @@ export default function AddMovie() {
         <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
       </div>
       <h3>{SearchOmdbApi.Title}</h3>
-      <h4>{SearchOmdbApi.Plot}</h4>
+      <h4>{SearchOmdbApi.Genre}</h4>
+      <p>{SearchOmdbApi.Plot}</p>
       <div className="button-container">
         <Button variant="contained" color="primary" onClick={() => saveMovie()}>
           Save

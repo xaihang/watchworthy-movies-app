@@ -35,7 +35,7 @@ export default function MovieDetails() {
   };
 
   useEffect(() => {
-    console.log("id ===== ", id);
+    // console.log("id ===== ", id);
     dispatch({ type: "FETCH_MOVIE", payload: id });
   }, []);
 
@@ -60,10 +60,16 @@ export default function MovieDetails() {
           <img src={movie.poster} alt={movie.title} className="movie-poster" />
           <div className="movie-details">
             <h3>{movie.title}</h3>
-            {genres?.map((genre) => (
+            {/* {genres?.map((genre) => (
               <li key={genre.id}>{genre.name}</li>
             ))}
-            <h5>{movie.description}</h5>
+       */}
+
+            {genres.map((genre) => (
+              <span key={genre.id}>{genre.name}</span>
+            ))}
+
+            <p>{movie.description}</p>
           </div>
           <div>
             <div className="button-container">
