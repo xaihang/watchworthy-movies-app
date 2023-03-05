@@ -32,14 +32,19 @@ Watchworthy is a movie management application that allows users to effortlessly 
 ---
 
 ## Usage
-*To use the movie management application, follow these steps:*
+Here are the step-by-step instructions on how to use Watchworthy:
 
-1. Open the Home/List Page to see a list of all the movies in the database.
-1. Click on a movie poster to view the Details Page for that movie.
-1.On the Details Page, you can view all details for the selected movie, including the title, description, image, and genres. To return to the Home/List Page, click the Back to List button.
-1. To add a new movie, go to the Add Movie Form and fill in the movie title, poster image URL, description, and select a genre from the dropdown list. Click the Save button to save the new movie to the database and return to the Home/List Page.
-1. To refresh the Details Page and maintain the same movie details, enable the Refresh on Details Page feature.
-1. To edit the title and description of a movie, click on the Edit button on the Details Page. On the Edit Page, change the title and description as desired and click the Save button to update the movie details in the database and return to the Details Page.
+1. Open the Watchworthy application.
+1. On the main page, you will see a search bar where you can enter the movie title you want to add to your collection.
+1. Type the movie title you want to add to your collection and click on the search button.
+1. Once you have found the movie you want to add, click on the "Save" button below the movie poster.
+1. The movie will now be added to your Watchworthy collection.
+1. To access your collection, click on the logo (movie reel) anytime; it is located on the top left. 
+1. You will now see an organized list of all the movies in your collection.
+1. To view more details about a specific movie, click on the movie poster.
+Here, you will be able to view the movie's plot and genres. 
+1. If you want to remove a movie from your collection, simply click on the "Delete" button located below the movie poster.
+1. Congratulations! You have successfully used Watchworthy to manage your movie collection.
 
 
 ---
