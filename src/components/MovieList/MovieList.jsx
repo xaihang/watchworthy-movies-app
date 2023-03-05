@@ -15,7 +15,7 @@ function MovieList() {
 
   return (
     <main>
-          <h3>My movie collection...</h3>
+          <h2>My movie collection...</h2>
       <div>
       <Paper elevation={3} className="movies">
           {movies.map((movie) => {

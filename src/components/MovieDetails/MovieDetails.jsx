@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory, useParams } from "react-router-dom";
 import { Button, Paper } from "@material-ui/core";
+import "./MovieDetails.css";
 
 export default function MovieDetails() {
   const dispatch = useDispatch();
@@ -31,32 +32,34 @@ export default function MovieDetails() {
   return (
     <Paper className="movie-details-container">
       {movie && (
-        <div>
-          <h3>More about this movie...</h3>
-          <img src={movie.poster} alt={movie.title} />
-          <div>
-            <h2>{movie.title}</h2>
+        <div className="poster-container">
+          <h2>More about this movie...</h2>
+          <img src={movie.poster} alt={movie.title} className="movie-poster" />
+          <div className="movie-details">
+            <h3>{movie.title}</h3>
             {genres?.map((genre) => (
               <li key={genre.id}>{genre.name}</li>
             ))}
             <h5>{movie.description}</h5>
           </div>
           <div>
+            <div className="button-container">
+              <Button
+                variant="outlined"
+                color="error"
+                onClick={() => deleteMovie(movie.id)}
+              >
+                Delete
+              </Button>
 
-            {/* <button onClick={() => deleteMovie(movie.id)}>Delete</button> */}
-           
-            <Button variant="contained" color="error" onClick={() => deleteMovie(movie.id)}>
-          Delete
-        </Button>
-
-            <Button
-          variant="outlined"
-          color="primary"
-          onClick={() => history.push("/")}
-        >
-          Back to List
-        </Button>
-          
+              <Button
+                variant="outlined"
+                color="primary"
+                onClick={() => history.push("/")}
+              >
+                Back to List
+              </Button>
+            </div>
           </div>
         </div>
       )}

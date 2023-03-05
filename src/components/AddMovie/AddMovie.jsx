@@ -24,7 +24,7 @@ export default function AddMovie() {
   return (
     <Paper className="add-movie-container">
       <div className="poster-container">
-      <h3>Add to my movie collection?</h3>
+      <h2>Add to my movie collection?</h2>
         <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
       </div>
       <h3>{SearchOmdbApi.Title}</h3>
