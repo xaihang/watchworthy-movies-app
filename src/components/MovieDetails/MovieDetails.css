@@ -33,4 +33,6 @@
     margin: 0 auto;
   }
 
-  
+  p {
+    font-style: italic;
+  }

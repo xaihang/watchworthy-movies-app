@@ -29,7 +29,7 @@ export default function AddMovie() {
         <img src={SearchOmdbApi.Poster} alt={SearchOmdbApi.title} />
       </div>
       <h3>{SearchOmdbApi.Title}</h3>
-      <h4>{SearchOmdbApi.Genre}</h4>
+      <span>{SearchOmdbApi.Genre}</span>
       <p>{SearchOmdbApi.Plot}</p>
       <div className="button-container">
         <Button variant="contained" color="primary" onClick={() => saveMovie()}>

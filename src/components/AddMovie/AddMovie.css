@@ -17,3 +17,7 @@
   justify-content: center;
   gap: 10px;
 }
+
+p {
+  font-style: italic;
+}
