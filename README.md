@@ -74,4 +74,5 @@ Here, you will be able to view the movie's plot and genres.
 ## Contact 
 Let's stay connected! I welcome your feedback and compliments, so please feel free to drop me a message below.
 
-<a href="https://www.linkedin.com/in/xai-hang/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:xaihang12@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
+<a href="https://www.linkedin.com/in/xai-hang/" target="_blank"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a> 
+  <a href="mailto:xaihang12@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
