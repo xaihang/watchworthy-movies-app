@@ -39,7 +39,7 @@ Here are the step-by-step instructions on how to use Watchworthy:
 1. Type the movie title you want to add to your collection and click on the search button.
 1. Once you have found the movie you want to add, click on the "Save" button below the movie poster.
 1. The movie will now be added to your Watchworthy collection.
-1. To access your collection, click on the logo (movie reel) anytime; it is located on the top left. 
+1. To access your collection, click on the logo *(movie reel)* anytime; it is located on the top left. 
 1. You will now see an organized list of all the movies in your collection.
 1. To view more details about a specific movie, click on the movie poster.
 Here, you will be able to view the movie's plot and genres. 
@@ -69,3 +69,5 @@ Here, you will be able to view the movie's plot and genres.
 * [Material UI](https://mui.com/)
 
 ---
+## Contact 
+ 
