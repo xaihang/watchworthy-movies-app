@@ -28,7 +28,7 @@ export default function Header() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="#fff">
+      <AppBar position="static" color="default">
         <Toolbar>
           <img
             src={logo}
