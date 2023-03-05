@@ -1,4 +1,4 @@
-# WATCHWORTHY (a movie managament app)
+# WATCHWORTHY
 
 ## Description
 Watchworthy is a movie management application that allows users to effortlessly search for and add movies to their collection. Utilizing The Open Movie Database API, users can browse movies by title and add them to their Watchworthy collection with just a click. Once added, users can access an organized list of their chosen movies and click on each poster to view detailed information about the movie. Furthermore, removing movies from their collection is just as simple. Watchworthy streamlines the process of managing favorite movies or creating a collection for future viewing, making it an intuitive and user-friendly application.
@@ -8,23 +8,22 @@ Watchworthy is a movie management application that allows users to effortlessly 
 
 ---
 ## **TABLE OF CONTENT:**
-1. [Screenshot of application](#screenshot-of-application)
+1. [App Demo](#app-demo)
 1. [Installation & Setup](#installation--setup)
 1. [Usage](#usage)
 1. [Technologies utilization](#technologies-utilization)
-1. [Contributors](#contributors)
-1. [Acknowledgement](#acknowledgement)
+1. [Contact](#contact)
+
 
 ---
-## Screenshot of application
-![search view](./public/searchvview.png)
+## App Demo
+![app demo](./public/images/watchworty-demo.gif)
 
 ---
 
 ## Installation & Setup
-1. $ git clone git@github.com:xaihang/weekend-movie-sagas.git
-1. `npm install`
 1. Start postgres using brew services start postgresql (database name: `saga_movies_weekend`)
+1. `npm install`
 1. `npm run server` in your terminal
 1. `npm run client` in another terminal. 
 1. Navigate to localhost:3000
@@ -69,8 +68,10 @@ Here, you will be able to view the movie's plot and genres.
 * [Material UI](https://mui.com/)
 
 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/HTML"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original.svg" height="40px" width="40px" /></a><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-original.svg" height="40px" width="40px" /></a><a href="https://material-ui.com/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/materialui/materialui-original.svg" height="40px" width="40px" /></a><a href="https://nodejs.org/en/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg" height="40px" width="40px" /></a><a href="https://www.postgresql.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/postgresql/postgresql-original.svg" height="40px" width="40px" /></a><a href="https://reactjs.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original-wordmark.svg" height="40px" width="40px" /></a><a href="https://redux.js.org/"><img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/redux/redux-original.svg" height="40px" width="40px" /></a>
+
+
 ---
 ## Contact 
- 
+Let's stay connected! I welcome your feedback and compliments, so please feel free to drop me a message below.
 
 <a href="https://www.linkedin.com/in/xai-hang/"><img src="https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white" /></a>  <a href="mailto:xaihang12@gmail.com"><img src=https://raw.githubusercontent.com/johnturner4004/readme-generator/master/src/components/assets/images/email_me_button_icon_151852.svg /></a>
