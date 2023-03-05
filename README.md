@@ -1,4 +1,4 @@
-# MOVIE SAGA PROJECT 
+# WATCHWORTHY (a movie managament app)
 
 ## Description
 
