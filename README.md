@@ -66,5 +66,6 @@ Here, you will be able to view the movie's plot and genres.
 * [PostgreSQL](https://www.postgresql.org/)
 * [Postman](https://www.postman.com/)
 * [GitHub](https://github.com/xaihang/) 
+* [Material UI](https://mui.com/)
 
 ---
