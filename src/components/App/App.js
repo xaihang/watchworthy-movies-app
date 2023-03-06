@@ -5,6 +5,7 @@ import SearchMovie from '../SearchMovie/SearchMovie';
 import MovieDetails from '../MovieDetails/MovieDetails';
 import AddMovie from '../AddMovie/AddMovie';
 import Header from '../Header/Header';
+import '@fontsource/roboto'; 
 
 function App() {
   return (

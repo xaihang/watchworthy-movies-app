@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { Button, Paper } from "@material-ui/core";
+import { Button, Paper } from "@mui/material";
 import "./AddMovie.css";
 
 export default function AddMovie() {

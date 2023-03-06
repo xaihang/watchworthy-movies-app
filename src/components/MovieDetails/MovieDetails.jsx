@@ -9,7 +9,7 @@ import {
   DialogContentText,
   DialogTitle,
   Paper,
-} from "@material-ui/core";
+} from "@mui/material";
 import "./MovieDetails.css";
 
 export default function MovieDetails() {
@@ -68,7 +68,7 @@ export default function MovieDetails() {
           <div>
             <div className="button-container">
               <Button
-                variant="outlined"
+                variant="contained"
                 color="error"
                 onClick={handleDeleteClick}
               >
