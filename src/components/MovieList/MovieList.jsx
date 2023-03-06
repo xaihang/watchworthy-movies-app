@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Paper } from "@material-ui/core";
+import { Paper } from "@mui/material";
 import "./MovieList.css";
 import MovieItem from "../MovieItem/MovieItem";
 
